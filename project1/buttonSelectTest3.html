@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选项卡</title>
+		<style>
+			#box .on {background-color: brown;}
+			#box div {
+				display: none;
+				width: 300px;
+				height: 300px;
+				border: 1px solid brown;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var oBox = document.getElementById('box');
+				var aBtn = oBox.getElementsByTagName('input');
+				var aDiv = oBox.getElementsByTagName('div');
+				for(var i = 0; i < aBtn.length; i++){
+					aBtn[i].index = i;
+					aBtn[i].onclick = function(){
+						//清除所有的选中
+						for(var i = 0; i < aBtn.length; i++){
+							aBtn[i].className = '';
+							aDiv[i].style.display = 'none';
+						}
+						this.className = 'on';
+						//alert(this.index);
+						aDiv[this.index].style.display = 'block';
+					};
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<input type="button" value="a" class='on'>
+			<input type="button" value="b">
+			<input type="button" value="c">
+			<div style="display: block">a</div>
+			<div>b</div>
+			<div>c</div>
+		</div>
+	</body>
+</html>

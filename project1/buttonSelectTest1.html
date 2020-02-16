@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>全选|不选|反选</title>
+		<script>
+			window.onload = function(){
+				var oAll = document.getElementById('all');
+				var oNo = document.getElementById('no');
+				var oRev = document.getElementById('rev');
+				var oBox = document.getElementById('box');
+				var oInp = oBox.getElementsByTagName('input');
+				oAll.onclick = function(){
+					for(var i = 0; i < oInp.length; i++){
+						oInp[i].checked = true;
+					}
+				};
+				oNo.onclick = function(){
+					for(var i = 0; i < oInp.length; i++){
+						oInp[i].checked = false;
+					}
+				};
+				oRev.onclick = function(){
+					for(var i = 0; i < oInp.length; i++){
+						oInp[i].checked = !oInp[i].checked;
+					}
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<input type="button" value="全选" id="all">
+		<input type="button" value="不选" id="no">
+		<input type="button" value="反选" id="rev">
+		<hr>
+		<div id="box">
+			<input type="checkbox">
+			<input type="checkbox">
+			<input type="checkbox">			
+		</div>
+	</body>
+</html>

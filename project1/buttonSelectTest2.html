@@ -1,0 +1,44 @@
+<!-- 点击全选，下面的都选中 -->
+<!-- 如果下面的都选中，那么全选也选中 -->
+<!-- 如果下面有一个没选中，那么上面不选中 -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>联动选择</title>
+		<script>
+			window.onload = function(){
+				var oAll = document.getElementById('all');
+				var oBox = document.getElementById('box');
+				var oSub = oBox.getElementsByTagName('input');
+				oAll.onclick = function(){
+					for(var i = 0; i < oSub.length; i++){
+						oSub[i].checked = oAll.checked;
+					}
+				};
+				for(var i = 0; i < oSub.length; i++){
+					oSub[i].onclick = function(){
+						var count = 0;
+						for(var j = 0; j < oSub.length; j++){
+							if(oSub[j].checked)
+								count++;
+						}
+						if(count == oSub.length)
+							oAll.checked = true;
+						else
+							oAll.checked = false;
+					};
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<input type="checkbox" value="全选" id="all"><h>全选</h>
+		<hr>
+		<div id="box">
+			<input type="checkbox">
+			<input type="checkbox">
+			<input type="checkbox">			
+		</div>
+	</body>
+</html>
