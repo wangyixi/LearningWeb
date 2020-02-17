@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>random1</title>
+		<script>
+			//生成随机m-n数
+			function rnd(m, n){
+				return m+parseInt(Math.random()*(n-m));
+			} 
+			//判重
+			function findNum(x, arr){
+				for(var i = 0; i < arr.length; i++){
+					if(x == arr[i])
+						return true;
+				}
+				return false;
+			}
+			//补零
+			function addZero(n){
+				return n >= 10 ? '' + n : '0' + n; 
+			}
+			var arr = [];
+			while(arr.length < 7) {
+				var iNum = rnd(1, 34); //生成1-33之间的随机数
+				if(!findNum(iNum, arr))
+					arr.push(addZero(iNum));
+			}
+			document.write(arr);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
