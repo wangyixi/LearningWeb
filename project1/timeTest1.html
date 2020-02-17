@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>秒表</title>
+		<script>
+			window.onload = function(){
+				var oTime = document.getElementById('time');
+				var oStart = document.getElementById('start');
+				var oEnd = document.getElementById('end');
+				var oZero = document.getElementById('zero');
+				var timer = null;
+				var s = 0;
+				//补零
+				function addZero(n){
+					return n >= 10 ? '' + n : '0' + n; 
+				};
+				oStart.onclick = function(){
+					
+					clearInterval(timer);
+					timer = setInterval(function(){
+						s++;
+						oTime.value = addZero(parseInt(s/60) + ':' + addZero(s%60));
+					}, 50);
+				};
+				oEnd.onclick = function(){
+					clearInterval(timer);
+				}
+				oZero.onclick = function(){
+					s = 0;
+					oTime.value = "00:00";
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<input type="text" value="00:00" id="time">
+		<input type="button" value="开始" id="start">
+		<input type="button" value="结束" id="end">
+		<input type="button" value="清零" id="zero">
+	</body>
+</html>
