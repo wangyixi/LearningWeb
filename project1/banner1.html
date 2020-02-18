@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>轮播图</title>
+		<style type="text/css">
+			#box .on{
+				background-color: brown;
+			}
+			#box div{
+				width: 200px;
+				height: 300px;
+				border: 1px solid;
+				display: none;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var oBox = document.getElementById('box');
+				var oPrev = document.getElementById('prev');
+				var oNext = document.getElementById('next');
+				var oBtn = oBox.getElementsByTagName('input');
+				var oDiv = oBox.getElementsByTagName('div');
+				var iNow = 0;
+				var timer = null;
+				function tab(){
+					for(var i = 0; i < oBtn.length; i++){
+						oBtn[i].className = '';
+						oDiv[i].style.display = 'none';
+					}
+					oBtn[iNow].className = 'on';
+					oDiv[iNow].style.display = 'block';
+				};
+				function fnNext(){
+					iNow++;
+					if(iNow == oBtn.length) iNow = 0;
+					tab();
+				}
+				function fnPrev(){
+					iNow--;
+					if(iNow == -1) iNow = oBtn.length-1;
+					tab();
+				}
+				for(var i = 0; i < oBtn.length; i++){
+					oBtn[i].index = i;
+					oBtn[i].onclick = function(){
+						iNow = this.index;
+						tab();
+					};
+				}
+				//手动播放
+				oNext.onclick = fnNext;
+				oPrev.onclick = fnPrev;
+				//自动播放
+				clearInterval(timer);
+				timer = setInterval(function(){
+					fnNext();
+				},1000);
+				oBox.onmouseover = function(){
+					clearInterval(timer);
+				};
+				oBox.onmouseout = function(){
+					timer = setInterval(function(){
+						fnNext();
+					},1000);
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<a href="" id="prev"><-</a>
+			<input type="button" value="a" class="on">
+			<input type="button" value="b">
+			<input type="button" value="c">
+			<a href="" id="next">-></a>
+			<div style="display: block">a</div>
+			<div>b</div>
+			<div>c</div>
+		</div>
+	</body>
+</html>
