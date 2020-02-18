@@ -1,3 +1,4 @@
+//href="javascript:;" 执行一段空白的js代码，防止链接跳转。不加的话无法使事件执行正常
 <!DOCTYPE html>
 <html>
 	<head>
@@ -69,11 +70,11 @@
 	</head>
 	<body>
 		<div id="box">
-			<a href="" id="prev"><-</a>
+			<a href="javascript:;" id="prev"><-</a>
 			<input type="button" value="a" class="on">
 			<input type="button" value="b">
 			<input type="button" value="c">
-			<a href="" id="next">-></a>
+			<a href="javascript:;" id="next">-></a>
 			<div style="display: block">a</div>
 			<div>b</div>
 			<div>c</div>

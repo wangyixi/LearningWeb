@@ -1,0 +1,72 @@
+//查询子结点、父结点，插入结点
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>上移下移</title>
+		<script>
+			window.onload = function() {
+				var oUl = document.getElementById('ul1');
+				var oPrev = document.getElementsByClassName('prev');
+				var oNext = document.getElementsByClassName('next');
+				for (var i = 0; i < oPrev.length; i++) {
+					oPrev.index = i;
+					oPrev[i].onclick = function() {
+						var obj = this.parentNode //父节点为<li>结点
+						if (obj == oUl.children[0]) {
+							alert("到顶啦！");
+							return;
+						}
+						//IE: previousSibling   chrome,firefox: previousElementSibling
+						else {
+							var oPrevNode = obj.previousElementSibling || obj.previousSibling;
+							oUl.insertBefore(obj, oPrevNode);
+							return;
+						}
+					};
+				}
+				for (var i = 0; i < oNext.length; i++) {
+					oNext.index = i;
+					oNext[i].onclick = function() {
+						var obj = this.parentNode //父节点为<li>结点
+						if (obj == oUl.children[oNext.length - 1]) {
+							alert("到底啦！");
+							return;
+						}
+						//IE: nextSibling   chrome,firefox: nextElementSibling
+						else {
+							var oPrevNode1 = obj.nextElementSibling || obj.nextSibling;
+							var oPrevNode2 = oPrevNode1.nextElementSibling || oPrevNode1.nextSibling;
+							oUl.insertBefore(obj, oPrevNode2);
+							return;
+						}
+					};
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>
+				<span>11111</span>
+				<a href="javascript:;" class="prev">上移</a>
+				<a href="javascript:;" class="next">下移</a>
+			</li>
+			<li>
+				<span>22222</span>
+				<a href="javascript:;" class="prev">上移</a>
+				<a href="javascript:;" class="next">下移</a>
+			</li>
+			<li>
+				<span>33333</span>
+				<a href="javascript:;" class="prev">上移</a>
+				<a href="javascript:;" class="next">下移</a>
+			</li>
+			<li>
+				<span>444444</span>
+				<a href="javascript:;" class="prev">上移</a>
+				<a href="javascript:;" class="next">下移</a>
+			</li>
+		</ul>
+	</body>
+</html>
