@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>半透明拖拽</title>
+		<style>
+			div {
+				background-color: burlywood;
+				height: 100px;
+				width: 100px;
+				position: absolute;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var oDiv = document.getElementById('div1');
+				oDiv.onmousedown = function(ev) {
+					var oEv = ev || event;
+					var disX = oEv.clientX - oDiv.offsetLeft;
+					var disY = oEv.clientY - oDiv.offsetTop;
+
+					//生成新的半透明的div
+					var oNewDiv = oDiv.cloneNode(true);
+					oNewDiv.removeAttribute('id');
+					oNewDiv.style.opacity = 0.2;
+					oDiv.parentNode.appendChild(oNewDiv);
+
+					//移动
+					document.onmousemove = function(ev){
+						var oEv = ev || event;
+						oNewDiv.style.left = ev.clientX - disX + 'px';
+						oNewDiv.style.top = ev.clientY - disY + 'px';
+					};
+					
+					//移动原div
+					document.onmouseup = function() {
+						oDiv.style.left = oNewDiv.offsetLeft + 'px';
+						oDiv.style.top = oNewDiv.offsetTop + 'px';
+						oDiv.parentNode.removeChild(oNewDiv);
+						document.onmousemove = null;
+						document.onmouseup = null;
+					};
+					//如果背景有文字，可以阻止选中文字,防止干扰移动
+					document.onmousedown = function(){
+						return false;
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+
+	</body>
+	<div id="div1"></div>
+</html>
