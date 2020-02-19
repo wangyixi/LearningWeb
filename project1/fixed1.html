@@ -1,3 +1,4 @@
+//也不用getPos()函数一层一层获取top值，可以直接用getBoundingClientRect().top获取（IE8以下不支持）
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,18 +7,15 @@
 		<style type="text/css">
 			#div2 {
 				background-color: beige;
+				text-align: center;
 				height: 50px;
 				width: 100%;
 			}
 			//占位div
 			#div3 {
-				height: 60px;
+				height: 50px;
 				width: 100%;
 				display: none;
-			}
-
-			h5 {
-				text-align: center;
 			}
 		</style>
 		<script>
@@ -43,6 +41,7 @@
 						div2.style.position = 'fixed';
 						div2.style.top = '0px';
 						div3.style.top = '0px';
+						div3.style.top = div2.style.height;
 						div3.style.display = 'block';
 					} else {
 						div2.style.position = '';
@@ -64,9 +63,9 @@
 				html中a标签本是让点击链接打开一个网页，但很多时候将它当按钮使用，所以href填上一段没用的地址，如果不填或没有href赋值将会影响点击交互；
 			</div>
 			<div id="div2">
-				<h5>吸顶条</h5>
+				吸顶条
 			</div>
-			<div id="div3">
+			<div id="div3" style="height: 50px;">
 			</div>
 			<div>
 				html中a标签本是让点击链接打开一个网页，但很多时候将它当按钮使用，所以href填上一段没用的地址，如果不填或没有href赋值将会影响点击交互；

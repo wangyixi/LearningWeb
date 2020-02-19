@@ -1,0 +1,25 @@
+<!--onfocus-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>文字输入框提示</title>
+		<script>
+			window.onload = function(){
+				var input = document.getElementById('text');
+				var text = input.value;
+				input.onfocus = function(){
+					input.value = '';
+				}
+				input.onblur = function(){
+					input.value = text;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<input type="text" id='text' value="请输入内容...">
+		</div>
+	</body>
+</html>
