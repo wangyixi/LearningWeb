@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>上滑幻灯片</title>
+		<style>
+			ul{
+				margin-top: 100px;
+			}
+			li{
+				list-style: none;
+				z-index:-1;
+			}
+			img{
+				height: 300px;
+				opacity: 0;
+				/*居中的方法*/
+				display: block;
+				margin: 0 auto;
+			}
+			input{
+				top: 360px;
+				width: 30px;
+				position: fixed;
+			}
+			#input1{
+				left: 770px;
+			}
+			#input2{
+				left: 810px;
+			}
+			#input3{
+				left: 850px;
+			}
+			.active{
+				background-color: #A52A2A;
+			}
+		</style>
+		<script>
+			/*var timer = null;
+			function move(obj, target, time){
+				var start = obj.offsetTop;
+				var dis = target - start;
+				var count = Math.round(time/30);
+				var n = 0;
+				clearInterval(timer);
+				timer = setInterval(function(){
+					n++;
+					obj.style.margin-top = start + dis*n/count + 'px';
+					if(n == count){
+						clearInterval(timer);
+					}
+				}, 30);
+			};*/
+			window.onload = function(){
+				var arrBtn = document.getElementsByTagName('input');
+				var oUl = document.getElementsByTagName('ul');
+				console.log(oUl);
+				var arrImg = document.getElementsByTagName('img');
+				for(var i = 0; i < arrBtn.length; i++){
+					arrBtn[i].index = i;
+					arrBtn[i].onmouseover = function(){
+						this.className = 'active';
+						oUl[0].style.marginTop= (-1)*this.index*300 + 100 + 'px';
+						for(var j = 0; j < arrImg.length; j++){
+							if(j == this.index)
+								arrImg[j].style.opacity = '100%';
+							else
+								arrImg[j].style.opacity = '0';
+						}
+					};
+					arrBtn[i].onmouseout = function(){
+						this.className = '';
+					};
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li><img src="img/s1.jpg" style = "opacity: 100%;"></li>
+			<li><img src="img/s2.jpg"></li>
+			<li><img src="img/s3.jpg"></li>
+		</ul>
+		<input type="button" value="1" id='input1'>
+		<input type="button" value="2" id='input2'>
+		<input type="button" value="3" id='input3'>
+	</body>
+</html>
