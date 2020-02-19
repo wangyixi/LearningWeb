@@ -2,31 +2,37 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>鼠标跟随</title>
-		<style>
-			body{
-				width: 100%;
-			}
-			#box{
-				height: 100px;
-				width: 100px;
-				background-color: #A52A2A;
-				position: absolute;
-			}
-		</style>
-		<script>
-			window.onload = function(){
-				var oBox = document.getElementById('box');
-				document.onmousemove = function(){
-					var oEv = event;
-					oBox.style.left = oEv.clientX - oBox.offsetWidth/2 + 'px';
-					oBox.style.top = oEv.clientY - oBox.offsetHeight/2 + 'px';
+		<title></title>
+	</head>
+	<style>
+		#box{
+			background-color: burlywood;
+			height: 100px;
+			width: 100px;
+			position:absolute;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oBox = document.getElementById('box');
+			oBox.onmousedown = function(ev){
+				var oEv = ev||event;
+				var disX = oEv.clientX - oBox.offsetLeft;
+				var disY = oEv.clientY - oBox.offsetTop;
+				document.onmousemove = function(ev){
+					var oEv = ev||event;
+					oBox.style.left = oEv.clientX - disX + 'px';
+					oBox.style.top = oEv.clientY - disY + 'px';
+				};
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.onmouseup = null;
 				};
 			};
-		</script>
-	</head>
+			
+		};
+	</script>
 	<body>
-		<div id="box">
-		</div>
+		<div id="box"></div>
 	</body>
 </html>
