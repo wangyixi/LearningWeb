@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>瀑布流</title>
+	</head>
+	<style>
+		ul {
+			width: 300px;
+			margin: 0 10px;
+			float: left;
+			list-style: none;
+		}
+
+		li {
+			width: 100%;
+			margin: 10px 0;
+			height: 150x;
+			;
+			list-style: none;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			function rnd(m, n) {
+				return parseInt(m + Math.random() * (n - m));
+			}
+			var oBox = document.getElementById('box');
+			var aUl = oBox.children;
+
+			function createLi() {
+				var oLi = document.createElement('li');
+				oLi.style.height = rnd(100, 351) + 'px';
+				oLi.style.background = 'rgb(' + rnd(0, 256) + ',' + rnd(0, 256) +
+					',' + rnd(0, 256) + ')';
+				return oLi;
+			};
+			//将aUl转成数组
+			var arr = [];
+			for (var j = 0; j < aUl.length; j++) {
+				arr.push(aUl[j]);
+			}
+
+			function creatLis() {
+				for (var i = 0; i < 3; i++) {
+					var oLi = createLi();
+					//找到最短的ul
+					arr.sort(function(ul1, ul2) {
+						return ul1.offsetHeight - ul2.offsetHeight
+					});
+					//将li插入到最短的li中
+					arr[0].appendChild(oLi);
+				}
+			}
+			var cH = document.documentElement.clientHeight;
+			var sT = document.documentElement.scrollTop || document.body.scrollTop;
+			var scrollBottom = sT + cH;
+			var init = function(){
+				while(cH > document.body.scrollHeight){
+					creatLis();
+					console.log("!");
+				}
+				init = function(){};
+			}
+			init();
+			window.onscroll = function() {
+				if (document.body.scrollHeight >= scrollBottom) {
+					creatLis();
+					console.log("1:"+document.body.scrollHeight);
+					console.log("2:"+cH);
+					console.log("3:"+sT);
+				}
+			}
+		};
+	</script>
+	<body>
+		<div id="box">
+			<ul id='ul1'></ul>
+			<ul id='ul2'></ul>
+			<ul id='ul3'></ul>
+		</div>
+	</body>
+</html>
