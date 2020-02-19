@@ -28,11 +28,15 @@
 					document.onmousemove = null;
 					document.onmouseup = null;
 				};
+				 //如果背景有文字，可以阻止选中文字,防止干扰移动
+				document.onmousedown = function(){
+					return false;
+				}
 			};
-			
 		};
 	</script>
 	<body>
+		1111
 		<div id="box"></div>
 	</body>
 </html>
