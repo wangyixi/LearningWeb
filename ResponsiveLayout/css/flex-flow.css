@@ -1,0 +1,57 @@
+.flex-container {
+    display: flex;
+}
+.flex-container.first {
+    flex-flow: row;
+}
+/* Initial value. Main-axis is
+   inline, no wrap. */
+
+.flex-container.second {
+    flex-flow: column wrap;
+    -webkit-flex-flow: column wrap;
+}
+/* Main-axis is block-direction (top to bottom)
+   and lines wrap in the inline direction (rightwards). */
+
+.flex-container.third {
+    flex-flow: row-reverse wrap-reverse;
+}
+/* Main-axis is the opposite of inline direction
+   (right to left). New lines wrap upwards. */
+/* other styles just for format */
+
+ul {
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+.flex-container {
+    background: deepskyblue;
+    width: 200px;
+    height: 200px;
+    margin: 5px auto;
+}
+.flex-container.first {
+    height: 100px;
+}
+.flex-item {
+    background: tomato;
+    padding: 5px;
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    line-height: 80px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+h1 {
+    font-size: 22px;
+    text-align: center;
+}
+.flex-demo {
+    display: flex;
+}
